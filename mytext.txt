@@ -1,0 +1,2 @@
+this is my first Git control
+这是暂存已修改文件示例
