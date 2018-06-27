@@ -1,0 +1,9 @@
+import urllib.request
+url = "http://news.ifeng.com/mil"
+a = urllib.request.urlparse(url).scheme
+b = urllib.request.urlparse(url).netloc
+c = urllib.request.urlparse(url).path
+d = urllib.request.urlparse(url).params
+e = urllib.request.urlparse(url).query
+f = urllib.request.urlparse(url).fragment
+print(a, b, c, d, e, f)
