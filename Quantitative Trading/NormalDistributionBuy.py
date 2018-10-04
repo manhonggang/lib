@@ -9,6 +9,8 @@ keep_days = 50
 
 stock_day_change = np.random.standard_normal((stock_cnt, view_days))
 
+np.save('./stock_day_change', stock_day_change)
+
 stock_day_change_test = stock_day_change[:stock_cnt, 0:view_days-keep_days]
 
 print(np.sort(np.sum(stock_day_change_test, axis=1))[:3]) #由负数到正数，前面三个是最小的，因此是跌幅最大的。
@@ -37,4 +39,4 @@ for stock_ind in stock_lower_array:
     #print(sgl_profit)
 
 print('买入第{}只股票，从第454个交易日开始持有盈亏{:.2f}%'.format(stock_lower_array, profit))
-plt.show()
+#plt.show()
