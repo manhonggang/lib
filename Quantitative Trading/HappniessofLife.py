@@ -3,6 +3,8 @@ import numpy as np
 import six
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+import pandas as pd
+from mpl_toolkits.mplot3d import Axes3D
 
 K_INIT_LIVING_DAYS = 27375
 
@@ -186,3 +188,18 @@ print('活了{}年，幸福指数{}, 积累财富{}, 名望权力{}'.format(livi
 
 print('人生最优权重：追求健康{:.3f},追求财富{:.3f},追求名望{:.3f}'.format(sorted_scores[0][0][0], sorted_scores[0][0][1],
                                                        sorted_scores[0][0][2]))
+
+
+result_show = np.array([[r[0][0], r[0][1], r[0][2], r[1][1]] for r in result])
+fig = plt.figure(figsize=(9, 6))
+ax = fig.gca(projection='3d')
+ax.view_init(30, 60)
+
+ax.scatter3D(result_show[:, 0], result_show[:, 1], result_show[:, 2], c=result_show[:, 3], cmap='spring')
+ax.set_xlabel('health')
+ax.set_ylabel('stock')
+ax.set_zlabel('fame')
+
+happiness_result = result_show[:, 3]
+print(pd.qcut(happiness_result, 10).value_counts())
+plt.show()
